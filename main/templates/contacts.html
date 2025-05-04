@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты | Ай-Петри Промо{% endblock %}
+
+{% block content %}
+<h2>Контакты</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 30px;">
+  <div style="flex: 1;">
+    <p><strong>Адрес:</strong><br>
+      Республика Крым, г. Ялта, ул. Промоушн, 7</p>
+    <p><strong>Телефон:</strong><br>
+      +7 (978) 900-00-00</p>
+    <p><strong>Email:</strong><br>
+      info@aipetri-promo.ru</p>
+    <p><strong>Время работы:</strong><br>
+      Пн–Пт: с 09:00 до 18:00</p>
+  </div>
+
+  <div style="flex: 1;">
+    <form method="post">
+      {% csrf_token %}
+      <label>Имя:<br><input type="text" name="name" required></label><br><br>
+      <label>Email:<br><input type="email" name="email" required></label><br><br>
+      <label>Сообщение:<br><textarea name="message" rows="4" required></textarea></label><br><br>
+      <button type="submit">Отправить</button>
+    </form>
+  </div>
+</div>
+
+<br><br>
+
+<h3>Где мы находимся:</h3>
+<iframe src="https://yandex.ru/map-widget/v1/?ll=34.060602%2C44.451638&z=12&pt=34.060602,44.451638,pm2rdm"
+        width="100%" height="400" frameborder="0"></iframe>
+
+{% endblock %}
