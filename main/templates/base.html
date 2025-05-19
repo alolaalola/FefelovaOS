@@ -2,33 +2,95 @@
 <html lang="ru">
 {% load static %}
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}Ай-Петри Промо{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+  <meta charset="UTF-8">
+  <title>{% block title %}Ай-Петри Промо{% endblock %}</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'main/style.css' %}">
+  <link rel="stylesheet" href="{% static 'main/vision.css' %}" id="vision-css" disabled>
 </head>
 <body>
-    <header>
-        <h1>Ай-Петри Промо</h1>
-        <p>Рекламное агентство в Крыму</p>
-    </header>
 
-    <nav>
-        <a href="/">Главная</a>
-        <a href="/services/">Услуги</a>
-        <a href="/portfolio/">Портфолио</a>
-        <a href="/news/">Новости</a>
-        <a href="/contacts/">Контакты</a>
-        <a href="/search/">Поиск</a>
-        <a href="/login/">Вход</a>
-        <a href="/register/">Регистрация</a>
-    </nav>
+<!-- Панель слабовидящих -->
+<div id="accessibility-panel" class="bg-light p-2 border-bottom d-flex flex-wrap justify-content-center gap-2">
+  <span>Размер шрифта:</span>
+  <button class="btn btn-sm btn-outline-dark" onclick="setFontSize('normal')">А</button>
+  <button class="btn btn-sm btn-outline-dark" onclick="setFontSize('medium')">АА</button>
+  <button class="btn btn-sm btn-outline-dark" onclick="setFontSize('large')">ААА</button>
+  <span>Тема:</span>
+  <button class="btn btn-sm btn-outline-dark" onclick="setTheme('white-black')">Ч/Б</button>
+  <button class="btn btn-sm btn-outline-dark" onclick="setTheme('black-white')">Б/Ч</button>
+  <button class="btn btn-sm btn-outline-dark" onclick="setTheme('blue-lightblue')">С/Г</button>
+  <button class="btn btn-sm btn-outline-dark" onclick="setTheme('brown-beige')">К/Б</button>
+  <button class="btn btn-sm btn-outline-dark" onclick="setTheme('green-darkbrown')">З/ТК</button>
+</div>
 
-    <div class="container">
-        {% block content %}{% endblock %}
+<header class="bg-primary text-white py-3">
+  <div class="container-fluid">
+    <h1 class="h3 mb-0">Ай-Петри Промо</h1>
+    <p class="mb-0 small">Рекламное агентство в Крыму</p>
+  </div>
+</header>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="/">Главная</a></li>
+        <li class="nav-item"><a class="nav-link" href="/services/">Услуги</a></li>
+        <li class="nav-item"><a class="nav-link" href="/portfolio/">Портфолио</a></li>
+        <li class="nav-item"><a class="nav-link" href="/news/">Новости</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'testimonials' %}">Отзывы</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contacts/">Контакты</a></li>
+        <li class="nav-item"><a class="nav-link" href="/sitemap/">Карта сайта</a></li>
+      </ul>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="btn btn-warning btn-sm me-3" href="#" onclick="toggleAccessibility(event)">Версия для слабовидящих</a>
+        </li>
+        {% if user.is_authenticated %}
+          <li class="nav-item"><a class="nav-link" href="/profile/">Профиль</a></li>
+          <li class="nav-item"><a class="nav-link" href="/logout/">Выход</a></li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="/login/">Вход</a></li>
+          <li class="nav-item"><a class="nav-link" href="/register/">Регистрация</a></li>
+        {% endif %}
+      </ul>
     </div>
+  </div>
+</nav>
 
-    <footer>
-        <p>&copy; 2025 Ай-Петри Промо | Все права защищены</p>
-    </footer>
+<main class="container py-4 flex-grow-1">
+  {% block content %}{% endblock %}
+</main>
+
+
+<footer class="bg-dark text-white text-center py-3 mt-auto w-100">
+  <small>&copy; 2025 Ай-Петри Промо | Все права защищены <a href="/sitemap/" class="text-white">Карта сайта</a></small>
+</footer>
+
+<script>
+function setFontSize(size) {
+  document.body.classList.remove('font-normal', 'font-medium', 'font-large');
+  document.body.classList.add('font-' + size);
+}
+function setTheme(theme) {
+  document.body.classList.remove('white-black','black-white','blue-lightblue','brown-beige','green-darkbrown');
+  document.body.classList.add(theme);
+}
+function toggleImages() {
+  document.body.classList.toggle('no-images');
+}
+function toggleAccessibility(e) {
+  e.preventDefault();
+  const css = document.getElementById('vision-css');
+  css.disabled = !css.disabled;
+}
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

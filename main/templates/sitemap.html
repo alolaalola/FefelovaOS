@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Карта сайта — Ай-Петри Промо{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm p-4 mb-5 bg-white rounded">
+  <h2 class="mb-4">Карта сайта</h2>
+  <ul class="list-unstyled">
+    <li><a href="/">Главная</a></li>
+    <li>
+      <a href="/services/">Услуги</a>
+      <ul>
+        <li><a href="/services/#pr">PR-услуги</a></li>
+        <li><a href="/services/#outdoor">Наружная реклама</a></li>
+      </ul>
+    </li>
+    <li><a href="/portfolio/">Портфолио</a></li>
+    <li><a href="/news/">Новости</a></li>
+    <li><a href="{% url 'testimonials' %}">Отзывы</a></li>
+    <li><a href="/contacts/">Контакты</a></li>
+    <li><a href="/login/">Вход</a> / <a href="/register/">Регистрация</a></li>
+  </ul>
+</div>
+{% endblock %}

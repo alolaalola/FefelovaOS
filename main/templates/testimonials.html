@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Отзывы - Ай-Петри Промо{% endblock %}
+
+{% block content %}
+<div class="container mt-4 mb-5">
+    <h1 class="mb-4">Отзывы наших клиентов</h1>
+
+    {% for review in reviews %}
+        <div class="card my-3 shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title mb-1">{{ review.author }}</h5>
+                <p class="card-text">{{ review.content }}</p>
+                <small class="text-muted">{{ review.date }}</small>
+            </div>
+        </div>
+    {% empty %}
+        <p>Пока нет отзывов.</p>
+    {% endfor %}
+
+    <hr class="my-5">
+    <h2 class="mb-3">Оставьте отзыв</h2>
+
+    {% if success %}
+        <div class="alert alert-success">Спасибо! Ваш отзыв отправлен на модерацию.</div>
+    {% endif %}
+
+    <form method="post" class="p-4 bg-light rounded shadow-sm">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_author" class="form-label">Ваше имя</label>
+            {{ form.author }}
+        </div>
+        <div class="mb-3">
+            <label for="id_content" class="form-label">Ваш отзыв</label>
+            {{ form.content }}
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock %}

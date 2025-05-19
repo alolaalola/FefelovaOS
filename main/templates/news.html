@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Новости | Ай-Петри Промо{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Последние новости</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for news in news_list %}
+        <div class="col">
+            <div class="card h-100">
+                {% if news.image %}
+                <img src="{{ news.image.url }}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Изображение">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ news.title }}</h5>
+                    <p class="card-text">{{ news.content }}</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">{{ news.date }}</small>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>Новостей пока нет.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

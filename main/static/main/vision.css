@@ -1,0 +1,40 @@
+/* vision.css — стили для слабовидящих */
+
+body.accessible {
+    line-height: 1.8;
+    letter-spacing: 0.12em;
+    word-spacing: 0.16em;
+    font-family: Arial, sans-serif;
+}
+
+/* Размеры шрифта */
+body.font-normal { font-size: 16px; }
+body.font-medium { font-size: 20px; }
+body.font-large { font-size: 26px; }
+
+/* Цветовые схемы */
+body.white-black {
+    background-color: white;
+    color: black;
+}
+body.black-white {
+    background-color: black;
+    color: white;
+}
+body.blue-lightblue {
+    background-color: lightblue;
+    color: navy;
+}
+body.brown-beige {
+    background-color: beige;
+    color: brown;
+}
+body.green-darkbrown {
+    background-color: #3b2f2f;
+    color: #00cc00;
+}
+
+/* Отключение изображений */
+body.no-images img {
+    display: none !important;
+}
