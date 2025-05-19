@@ -38,3 +38,26 @@ body.green-darkbrown {
 body.no-images img {
     display: none !important;
 }
+
+body.black-white {
+    background-color: #000 !important;
+    color: #fff !important;
+}
+
+body.black-white a {
+    color: #00ffff !important; /* яркий голубой */
+}
+
+body.black-white .card {
+    background-color: #111 !important;
+    color: #fff !important;
+}
+
+body.black-white .card a {
+    color: #00ffff !important;
+}
+
+body.black-white ul,
+body.black-white li {
+    color: #fff !important;
+}
